@@ -1,0 +1,323 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1e1e24;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Panel de Controles */
+.panel-control {
+  display: flex;
+  gap: 15px;
+  background: #2b2b36;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+select {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  background: #3b3b4f;
+  color: #fff;
+}
+
+/* Panel Visual */
+.panel-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: #2b2b36;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+/* Estilos del Motor */
+.motor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.motor {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 4px solid #555;
+  background: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.aspas {
+  width: 50px;
+  height: 8px;
+  background: #aaa;
+  border-radius: 4px;
+  position: absolute;
+}
+
+.aspas::after {
+  content: '';
+  width: 8px;
+  height: 50px;
+  background: #aaa;
+  border-radius: 4px;
+  position: absolute;
+  top: -21px;
+  left: 21px;
+}
+
+/* Animación Motor Girando */
+.motor.encendido .aspas {
+  animation: girar 0.6s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Estilos de los LEDs */
+.leds-container {
+  display: flex;
+  gap: 25px;
+}
+
+.led-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.led {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #333;
+  box-shadow: inset 0 0 5px #000;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* --- ESTADOS BASE Y COLORES FIJOS --- */
+.led.apagado {
+  opacity: 0.3;
+  background-color: #333;
+  box-shadow: inset 0 0 5px #000;
+}
+
+.led.verde.encendido { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+.led.rojo.encendido  { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+.led.azul.encendido  { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+.led.ambar.encendido { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+
+
+/* --- ASIGNACIÓN DE ANIMACIONES Y COLORES DE ILUMINACIÓN --- */
+
+
+/* Verde */
+.led.verde.parpadeo        { animation: parp-verde 0.8s infinite alternate; }
+.led.verde.destello        { animation: destello-verde-1 1.2s infinite; }
+.led.verde.destello-doble  { animation: destello-verde-2 1.2s infinite; }
+.led.verde.destello-triple { animation: destello-verde-3 1.4s infinite; }
+.led.verde.parpadeo-rapido { animation: parp-rapido-verde 0.25s infinite alternate; }
+
+/* Rojo */
+.led.rojo.parpadeo       { animation: parp-rojo 0.8s infinite alternate; }
+.led.rojo.destello       { animation: destello-rojo-1 1.2s infinite; }
+.led.rojo.destello-doble { animation: destello-rojo-2 1.2s infinite; }
+.led.rojo.parpadeo-rapido  { animation: parp-rapido-rojo 0.25s infinite alternate; }
+
+/* Azul */
+.led.azul.parpadeo       { animation: parp-azul 0.8s infinite alternate; }
+.led.azul.destello       { animation: destello-azul-1 1.2s infinite; }
+.led.azul.destello-doble { animation: destello-azul-2 1.2s infinite; }
+.led.azul.pwm            { animation: pwm-azul 2s ease-in-out infinite; }
+.led.azul.parpadeo-rapido  { animation: parp-rapido-azul 0.25s infinite alternate; }
+
+/* Amarillo */
+.led.ambar.parpadeo        { animation: parp-ambar 0.8s infinite alternate; }
+.led.ambar.destello        { animation: destello-ambar-1 1.2s infinite; }
+.led.ambar.destello-doble  { animation: destello-ambar-2 1.2s infinite; }
+.led.ambar.pwm             { animation: pwm-ambar 2s ease-in-out infinite; }
+.led.ambar.parpadeo-rapido { animation: parp-rapido-ambar 0.25s infinite alternate; }
+
+
+/* ---  PARPADEO INTERCALADO (Rojo vs Azul/Ámbar) --- */
+/* Fase A (Rojo prende primero, se apaga al 50%) */
+.led.rojo.intercalado { animation: intercalado-fase-a 0.3s infinite; }
+
+/* Fase B (Azul/Ámbar prende cuando Rojo se apaga) */
+.led.azul.intercalado, 
+.led.ambar.intercalado { animation: intercalado-fase-b 0.3s infinite; }
+
+@keyframes intercalado-fase-a {
+  0%, 45%   { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  50%, 100% { background-color: #333; box-shadow: none; }
+}
+
+@keyframes intercalado-fase-b {
+  0%, 45%   { background-color: #333; box-shadow: none; }
+  50%, 100% { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+}
+
+/* Regla especial si el LED Azul está usando color Ámbar */
+.led.ambar.intercalado {
+  animation-name: intercalado-fase-b-ambar;
+}
+@keyframes intercalado-fase-b-ambar {
+  0%, 45%   { background-color: #333; box-shadow: none; }
+  50%, 100% { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+}
+
+/* --- KEYFRAMES POR COLOR Y RITMO --- */
+
+/* 1. VERDE */
+@keyframes parp-verde {
+  0% { background-color: #333; box-shadow: none; }
+  100% { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+}
+
+@keyframes parp-rapido-verde { 0% { background-color: #333; box-shadow: none; } 100% { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } }
+
+@keyframes destello-verde-1 {
+  0%, 40%   { background-color: #333; box-shadow: none; }            /* _ _ */
+  50%       { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* X */
+  60%, 100% { background-color: #333; box-shadow: none; }            /* _ _ */
+}
+@keyframes destello-verde-2 {
+  0%, 20% { background-color: #333; box-shadow: none; }            /* Apagado  (_) */
+  30%     { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* Encendido (X) */
+  40%     { background-color: #333; box-shadow: none; }            /* Apagado  (_) */
+  50%     { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* Encendido (X) */
+  60%, 100% { background-color: #333; box-shadow: none; }          /* Apagado largo (_ _) */
+}
+@keyframes destello-verde-3 {
+  0%, 10%   { background-color: #333; box-shadow: none; }            /* _ */
+  20%       { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* X */
+  30%       { background-color: #333; box-shadow: none; }            /* _ */
+  40%       { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* X */
+  50%       { background-color: #333; box-shadow: none; }            /* _ */
+  60%       { background-color: #00ff00; box-shadow: 0 0 15px #00ff00; } /* X */
+  70%, 100% { background-color: #333; box-shadow: none; }            /* _ _ */
+}
+
+/* 2. ROJO */
+@keyframes parp-rojo {
+  0% { background-color: #333; box-shadow: none; }
+  100% { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+}
+@keyframes parp-rapido-rojo  {
+     0% { background-color: #333; box-shadow: none; }
+      100% { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; } 
+}
+
+@keyframes destello-rojo-1 {
+  0%, 30%   { background-color: #333; box-shadow: none; }
+  45%       { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+@keyframes destello-rojo-2 {
+  0%, 20% { background-color: #333; box-shadow: none; }
+  30%     { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  40%     { background-color: #333; box-shadow: none; }
+  50%     { background-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+
+/* 3. AZUL */
+@keyframes parp-azul {
+  0% { background-color: #333; box-shadow: none; }
+  100% { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+}
+@keyframes parp-rapido-azul  {
+     0% { background-color: #333; box-shadow: none; }
+     100% { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; } 
+    }
+
+@keyframes destello-azul-1 {
+  0%, 30%   { background-color: #333; box-shadow: none; }
+  45%       { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+@keyframes destello-azul-2 {
+  0%, 20% { background-color: #333; box-shadow: none; }
+  30%     { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+  40%     { background-color: #333; box-shadow: none; }
+  50%     { background-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+@keyframes pwm-azul {
+  0%, 100% { background-color: #333; box-shadow: none; opacity: 0.3; }
+  50%      { background-color: #0088ff; box-shadow: 0 0 18px #0088ff; opacity: 1; }
+}
+
+/* 4. AMARILLO */
+@keyframes parp-ambar {
+  0% { background-color: #333; box-shadow: none; }
+  100% { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+}
+
+@keyframes parp-rapido-ambar {
+     0% { background-color: #333; box-shadow: none; }
+     100% { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; } 
+}
+
+@keyframes destello-ambar-1 {
+  0%, 30%   { background-color: #333; box-shadow: none; }
+  45%       { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+@keyframes destello-ambar-2 {
+  0%, 20% { background-color: #333; box-shadow: none; }
+  30%     { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+  40%     { background-color: #333; box-shadow: none; }
+  50%     { background-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+  60%, 100% { background-color: #333; box-shadow: none; }
+}
+@keyframes pwm-ambar {
+  0%, 100% { background-color: #333; box-shadow: none; opacity: 0.3; }
+  50%      { background-color: #ffff00; box-shadow: 0 0 18px #ffff00; opacity: 1; }
+}
+
+.panel-diagnostico {
+  margin-top: 25px;
+  background: #2b2b36;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.panel-diagnostico h3 {
+  margin: 0 0 10px 0;
+  color: #0088ff;
+  font-size: 16px;
+}
+
+#resultado-diagnostico {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: #1e1e24;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #3b3b4f;
+}

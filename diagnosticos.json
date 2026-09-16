@@ -1,0 +1,170 @@
+[
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo",
+    "rojo": "Apagado",
+    "azul": "Apagado",
+    "diagnostico": "Presión de encendido: Estándar"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Encendido",
+    "rojo": "Apagado",
+    "azul": "Apagado",
+    "diagnostico": "Sensor: No detecta caudal"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Encendido",
+    "rojo": "Apagado",
+    "azul": "Encendido",
+    "diagnostico": "Sensor: Detecta caudal"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Encendido",
+    "rojo": "Encendido",
+    "azul": "Encendido",
+    "diagnostico": "Inicializando equipo"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo",
+    "rojo": "Apagado",
+    "azul": "Parpadeo",
+    "diagnostico": "Tándem: Maestro"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo",
+    "rojo": "Apagado",
+    "azul": "Parpadeo 2 veces",
+    "diagnostico": "Tándem: Esclavo"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destello",
+    "rojo": "Apagado",
+    "azul": "Apagado",
+    "diagnostico": "Presión de encendido: Variante 1"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 2 veces",
+    "rojo": "Apagado",
+    "azul": "Apagado",
+    "diagnostico": "Presión de encendido: Variante 2"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 3 veces",
+    "rojo": "Apagado",
+    "azul": "Apagado",
+    "diagnostico": "Presión de encendido: Modo Noche"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Apagado",
+    "rojo": "Encendido",
+    "azul": "Apagado",
+    "diagnostico": "Falla: Descebado"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo rápido",
+    "rojo": "Parpadeo rápido",
+    "azul": "Parpadeo rápido",
+    "diagnostico": "Falla: Sensor de presión desconectado"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo rápido",
+    "rojo": "Encendido",
+    "azul": "Parpadeo rápido",
+    "diagnostico": "Falla: Descebado Total"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destello",
+    "rojo": "Apagado",
+    "azul": "Parpadeo",
+    "diagnostico": "Tándem: Maestro / Presión de encendido: Variante 1"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destello",
+    "rojo": "Apagado",
+    "azul": "Parpadeo 2 veces",
+    "diagnostico": "Tándem: Esclavo / Presión de encendido: Variante 1"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 2 veces",
+    "rojo": "Apagado",
+    "azul": "Parpadeo",
+    "diagnostico": "Tándem: Maestro / Presión de encendido: Variante 2"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 2 veces",
+    "rojo": "Apagado",
+    "azul": "Parpadeo 2 veces",
+    "diagnostico": "Tándem: Esclavo / Presión de encendido: Variante 2"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 3 veces",
+    "rojo": "Apagado",
+    "azul": "Parpadeo",
+    "diagnostico": "Tándem: Maestro / Presión de encendido: Modo Noche"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Destella 3 veces",
+    "rojo": "Apagado",
+    "azul": "Parpadeo 2 veces",
+    "diagnostico": "Tándem: Esclavo / Presión de encendido: Modo Noche"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Apagado",
+    "rojo": "Parpadeo intercalado",
+    "azul": "Parpadeo intercalado",
+    "diagnostico": "Falla: Sobrepresión"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Apagado",
+    "rojo": "Parpadeo",
+    "azul": "Parpadeo",
+    "diagnostico": "Falla: Sobrepresión"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Apagado",
+    "rojo": "Apagado",
+    "azul": "Parpadeo atenuado",
+    "diagnostico": "Apagado por aplicación"
+  },
+  {
+    "motor": "Apagado",
+    "verde": "Parpadeo",
+    "rojo": "Parpadeo",
+    "azul": "Apagado",
+    "diagnostico": "Falla: Modo Press"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Encendido",
+    "rojo": "Parpadeo",
+    "azul": "Encendido",
+    "diagnostico": "Falla: Modo Press (Sensor: Detecta caudal)"
+  },
+  {
+    "motor": "Encendido",
+    "verde": "Encendido",
+    "rojo": "Parpadeo",
+    "azul": "Apagado",
+    "diagnostico": "Falla: Modo Press (Sensor: No detecta caudal)"
+  }
+]

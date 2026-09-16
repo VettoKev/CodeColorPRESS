@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de LEDs y Motor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h2>Simulador de Estado y Diagnóstico</h2>
+
+  <!-- Panel de Selección -->
+  <div class="panel-control">
+    <div class="control-group">
+      <label for="select-motor">Motor:</label>
+      <select id="select-motor">
+        <option value="Apagado">Apagado</option>
+        <option value="Encendido">Encendido</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="select-verde">LED Verde:</label>
+      <select id="select-verde">
+        <option value="Apagado">Apagado</option>
+        <option value="Encendido">Encendido</option>
+        <option value="Parpadeo">Parpadeo</option>
+        <option value="parpadeo rapido">Parpadeo rápido</option>
+        <option value="Destello">Destello</option>
+        <option value="Destella 2 veces">Destella 2 veces</option>
+        <option value="Destella 3 veces">Destella 3 veces</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="select-rojo">LED Rojo:</label>
+      <select id="select-rojo">
+        <option value="Apagado">Apagado</option>
+        <option value="Encendido">Encendido</option>
+        <option value="Parpadeo">Parpadeo</option>
+        <option value="Parpadeo rápido">Parpadeo rápido</option>
+        <option value="Parpadeo intercalado">Parpadeo intercalado</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="select-azul">LED Azul:</label>
+      <select id="select-azul">
+        <option value="Apagado">Apagado</option>
+        <option value="Encendido">Encendido</option>
+        <option value="Parpadeo">Parpadeo</option>
+        <option value="parpadeo rapido">Parpadeo rápido</option>
+        <option value="Parpadeo 2 veces">Parpadeo 2 veces</option>
+        <option value="Parpadeo atenuado">Parpadeo atenuado</option>
+        <option value="Parpadeo intercalado">Parpadeo intercalado</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Panel Visual -->
+  <div class="panel-visual">
+    <div class="motor-container">
+      <div id="motor" class="motor Apagado">
+        <div class="aspas"></div>
+      </div>
+      <span>MOTOR</span>
+    </div>
+
+    <div class="leds-container">
+      <div class="led-wrapper">
+        <div id="led-verde" class="led verde Apagado"></div>
+        <span>Verde</span>
+      </div>
+      <div class="led-wrapper">
+        <div id="led-rojo" class="led rojo Apagado"></div>
+        <span>Rojo</span>
+      </div>
+      <div class="led-wrapper">
+        <div id="led-azul" class="led azul Apagado"></div>
+        <span>Azul</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agrega esto arriba de la selección o en el panel de control -->
+<div class="control-group">
+  <button id="btn-cambiar-modelo" type="button">Cambiar a PRESS WiFi</button>
+</div>
+
+  <!-- Panel Diagnóstico -->
+  <div class="panel-diagnostico">
+    <h3>Diagnóstico:</h3>
+    <div id="resultado-diagnostico">Cargando...</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

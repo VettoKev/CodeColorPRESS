@@ -313,6 +313,7 @@ select {
 }
 
 #resultado-diagnostico {
+  white-space: pre-line; /* Mantiene los saltos de línea en el texto */
   font-size: 18px;
   font-weight: bold;
   color: #fff;

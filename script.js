@@ -16,7 +16,7 @@ function obtenerClaseAnimacion(valorSelect) {
   if (val.includes('encendido')) return 'encendido';
   if (val.includes('parpadeo atenuado')) return 'pwm';
   if (val.includes('intercalado')) return 'intercalado';
-  if (val.includes('rápido') || val.includes('rapido')) return 'parpadeo-rapido';
+  if (val.includes('parpadeo rápido') ||val.includes('rápido') || val.includes('rapido')) return 'parpadeo-rapido';
   if (val.includes('3 veces') || val.includes('triple')) return 'destello-triple';
   if (val.includes('2 veces') || val.includes('doble')) return 'destello-doble';
   if (val.includes('destello') || val.includes('destella')) return 'destello';
@@ -66,14 +66,68 @@ function buscarDiagnostico() {
     cajaResultado.textContent = encontrado.diagnostico;
     cajaResultado.style.color = '#00ff00';
   } else {
-    cajaResultado.textContent = 'Combinación no encontrada';
-    cajaResultado.style.color = '#ff5555';
+    // Si no hay combinación exacta, generamos recomendaciones por lógica
+    const recomendacion = generarRecomendacion(mVal, vVal, rVal, aVal);
+    cajaResultado.innerHTML = recomendacion;
+    cajaResultado.style.color = '#ffaa00'; // Color naranja para diferenciarlo de un diagnóstico firme
   }
 }
 
 function ejecutarTodo() {
   actualizarVisuales();
   buscarDiagnostico();
+}
+
+function generarRecomendacion(motor, verde, rojo, azul) {
+  // Regla 1: Motor apagado pero el LED Verde indica marcha
+  let recomendacion = '';
+
+  if (motor === 'apagado' && verde === 'apagado'&& rojo === 'apagado'&& azul === 'apagado') {
+
+    recomendacion = '<br><strong>Equipo desenergizado.</strong>';
+    return recomendacion;
+
+  }
+
+  if (motor === 'apagado' && verde === 'encendido') {
+
+    recomendacion = '<span style="color: #ff4d4d; font-weight: bold;">El motor debería estar encendido</span>';
+    recomendacion += '<br><strong>Recomendación:</strong>';
+    recomendacion += '<br>• Revisar la conexión de alimentación del motor.';
+    recomendacion += '<br>• Revisar la conexión del capacitor.';
+    recomendacion += '<br>• Verificar que el motor no esté bloqueado mecánicamente.';
+
+    return recomendacion;
+  }
+
+  // Regla 2: Motor encendido pero el LED Verde no lo indica
+  if (motor === 'encendido' && verde !== 'encendido') {
+    if (rojo === 'intercalado' || rojo === 'parpadeo intercalado') {
+    recomendacion = '<span style="color: #ff4d4d; font-weight: bold;"> Precaución </span>';
+    recomendacion += '<br><strong>Podria dañar su instalación.</strong>';
+    recomendacion += '<br>• El equipo se encuentra en sobrepresión y detecta consumo.';
+    recomendacion += '<br> En el caso de que no desee detener el caudal de consumo el equipo se detendra luego de varios minutos.';
+    } else {
+    recomendacion = '<span style="color: #ff4d4d; font-weight: bold;"> Posible falla </span>';
+    recomendacion += '<br><strong>Si el motor no se detiene es posible que tenga una de estas fallas.</strong>';
+    recomendacion += '<br>• Falla en el teclado membrana, pruebe su equipo con el teclado desconectado.';
+    recomendacion += '<br>• Falla en la placa electronica, es posible que tenga un LED quemado o problemas la parte de potencia.';  
+    recomendacion += '<br>• Falla en la conexión.';
+    }
+  return recomendacion;
+  }
+
+  // Regla 3: Hay presencia de fallas (Rojo) con el motor queriendo andar
+  if (rojo !== 'apagado' && motor === 'encendido') {
+    return 'Recomendación: Estado inconsistente. El motor intenta operar bajo una condición de falla activa. Revisar sensores de protección.';
+  }
+
+  // Regla 4: Caso genérico si no entra en ninguna regla anterior
+
+  recomendacion = '<br><strong>La combinación de estados no coincide con ninguna regla conocida.</strong>';
+  recomendacion += '<br>Asegurese que la combinación cargada coincida con lo que ve en el equipo.';
+
+  return recomendacion;
 }
 
 // Escuchar cambios

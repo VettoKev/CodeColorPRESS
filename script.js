@@ -78,6 +78,7 @@ function ejecutarTodo() {
   buscarDiagnostico();
 }
 
+
 function generarRecomendacion(motor, verde, rojo, azul) {
   // Regla 1: Motor apagado pero el LED Verde indica marcha
   let recomendacion = '';
@@ -167,3 +168,33 @@ fetch('diagnosticos.json')
     console.error('Error al cargar JSON:', error);
     document.getElementById('resultado-diagnostico').textContent = 'Error al cargar diagnosticos.json';
   });
+
+// Función genérica para avanzar al siguiente valor en un desplegable (<select>)
+function alternarSiguienteEstado(selectElement) {
+  const opciones = Array.from(selectElement.options);
+  const indiceActual = selectElement.selectedIndex;
+  
+  // Pasa a la siguiente opción (y si llega al final, vuelve a la primera)
+  const siguienteIndice = (indiceActual + 1) % opciones.length;
+  selectElement.selectedIndex = siguienteIndice;
+
+  // Dispara el evento 'change' para actualizar animaciones y diagnóstico
+  selectElement.dispatchEvent(new Event('change'));
+}
+
+// Vinculamos los clics usando las variables que ya tenías declaradas arriba
+motor.addEventListener('click', () => {
+  alternarSiguienteEstado(selectMotor);
+});
+
+ledVerde.addEventListener('click', () => {
+  alternarSiguienteEstado(selectVerde);
+});
+
+ledRojo.addEventListener('click', () => {
+  alternarSiguienteEstado(selectRojo);
+});
+
+ledAzul.addEventListener('click', () => {
+  alternarSiguienteEstado(selectAzul);
+});

@@ -2,7 +2,7 @@
 
 Herramienta interactiva para visualizar el estado de funcionamiento, fallas y configuraciones de motores a través del comportamiento de sus indicadores LED (Verde, Rojo, Azul) y el estado de rotación.
 
-Diseñado como prototipo visual y lógica de prueba para su posterior integración en una aplicación móvil en Cordova / Android Studio.
+Link de la pagina del repositorio: https://vettokev.github.io/CodeColorPRESS
 
 ## 🚀 Características
 

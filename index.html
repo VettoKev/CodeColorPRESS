@@ -12,51 +12,71 @@
 
   <!-- Panel de Selección -->
   <div class="panel-control">
-    <div class="control-group">
-      <label for="select-motor">Motor:</label>
-      <select id="select-motor">
-        <option value="Apagado">Apagado</option>
-        <option value="Encendido">Encendido</option>
-      </select>
+
+    <!-- Fila Superior: Casos Predefinidos -->
+    <div class="fila-control"> 
+      <div class="control-group preset-group">
+        <label for="select-preset"><strong>Cargar caso conocido:</strong></label>
+        <select id="select-preset">
+          <option value="">-- Seleccionar un caso --</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Fila Inferior: Controles de Motor y LEDs -->
+    <div class="fila-control">
+      <div class="control-group">
+        <label for="select-motor">Motor:</label>
+        <select id="select-motor">
+          <option value="Apagado">Apagado</option>
+          <option value="Encendido">Encendido</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="select-verde">LED Verde:</label>
+        <select id="select-verde">
+          <option value="Apagado">Apagado</option>
+          <option value="Encendido">Encendido</option>
+          <option value="Parpadeo">Parpadeo</option>
+          <option value="parpadeo rápido">Parpadeo rápido</option>
+          <option value="Destello">Destello</option>
+          <option value="Destella 2 veces">Destella 2 veces</option>
+          <option value="Destella 3 veces">Destella 3 veces</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="select-rojo">LED Rojo:</label>
+        <select id="select-rojo">
+          <option value="Apagado">Apagado</option>
+          <option value="Encendido">Encendido</option>
+          <option value="Parpadeo">Parpadeo</option>
+          <option value="Parpadeo rápido">Parpadeo rápido</option>
+          <option value="Parpadeo intercalado">Parpadeo intercalado</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="select-azul">LED Azul:</label>
+        <select id="select-azul">
+          <option value="Apagado">Apagado</option>
+          <option value="Encendido">Encendido</option>
+          <option value="Parpadeo">Parpadeo</option>
+          <option value="parpadeo rápido">Parpadeo rápido</option>
+          <option value="Parpadeo 2 veces">Parpadeo 2 veces</option>
+          <option value="Parpadeo atenuado">Parpadeo atenuado</option>
+          <option value="Parpadeo intercalado">Parpadeo intercalado</option>
+        </select>
+      </div>
     </div>
 
-    <div class="control-group">
-      <label for="select-verde">LED Verde:</label>
-      <select id="select-verde">
-        <option value="Apagado">Apagado</option>
-        <option value="Encendido">Encendido</option>
-        <option value="Parpadeo">Parpadeo</option>
-        <option value="parpadeo rápido">Parpadeo rápido</option>
-        <option value="Destello">Destello</option>
-        <option value="Destella 2 veces">Destella 2 veces</option>
-        <option value="Destella 3 veces">Destella 3 veces</option>
-      </select>
+    <!-- Botón de modelo integrado abajo de las selecciones -->
+    <div class="fila-control" style="margin-top: 10px;">
+      <button id="btn-cambiar-modelo" type="button">Cambiar a PRESS WiFi</button>
     </div>
 
-    <div class="control-group">
-      <label for="select-rojo">LED Rojo:</label>
-      <select id="select-rojo">
-        <option value="Apagado">Apagado</option>
-        <option value="Encendido">Encendido</option>
-        <option value="Parpadeo">Parpadeo</option>
-        <option value="Parpadeo rápido">Parpadeo rápido</option>
-        <option value="Parpadeo intercalado">Parpadeo intercalado</option>
-      </select>
-    </div>
-
-    <div class="control-group">
-      <label for="select-azul">LED Azul:</label>
-      <select id="select-azul">
-        <option value="Apagado">Apagado</option>
-        <option value="Encendido">Encendido</option>
-        <option value="Parpadeo">Parpadeo</option>
-        <option value="parpadeo rápido">Parpadeo rápido</option>
-        <option value="Parpadeo 2 veces">Parpadeo 2 veces</option>
-        <option value="Parpadeo atenuado">Parpadeo atenuado</option>
-        <option value="Parpadeo intercalado">Parpadeo intercalado</option>
-      </select>
-    </div>
-  </div>
+  </div> <!-- Aca faltaba cerrar el panel-control -->
 
   <!-- Panel Visual -->
   <div class="panel-visual">
@@ -82,11 +102,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Agrega esto arriba de la selección o en el panel de control -->
-<div class="control-group">
-  <button id="btn-cambiar-modelo" type="button">Cambiar a PRESS WiFi</button>
-</div>
 
   <!-- Panel Diagnóstico -->
   <div class="panel-diagnostico">

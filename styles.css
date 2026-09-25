@@ -9,15 +9,42 @@ body {
 }
 
 /* Panel de Controles */
+/* Panel Principal */
+/* Panel de selección principal */
 .panel-control {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 15px;
   background: #2b2b36;
-  padding: 15px;
+  padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 700px; /* Le damos más espacio horizontal */
+  box-sizing: border-box;
 }
+
+/* Filas internas */
+.fila-control {
+  display: flex;
+  flex-wrap: nowrap; /* Evita que los selectores se bajen de fila */
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Ajuste fino para los selects */
+.control-group select {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: none;
+  background: #3b3b4f;
+  color: #fff;
+  font-size: 14px;
+}
+
 
 .control-group {
   display: flex;

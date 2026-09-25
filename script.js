@@ -157,17 +157,46 @@ btnModelo.addEventListener('click', () => {
   ejecutarTodo();
 });
 
-// Cargar JSON
+const selectPreset = document.getElementById('select-preset');
+
+// Cargar JSON y poblar el selector de casos predefinidos dinámicamente
 fetch('diagnosticos.json')
   .then(response => response.json())
   .then(data => {
     listaDiagnosticos = data;
+
+    // Llenamos el combo de casos predefinidos a partir del JSON
+    listaDiagnosticos.forEach((item, index) => {
+      const option = document.createElement('option');
+      option.value = index; // Guardamos el índice del array
+      option.textContent = item.diagnostico; // El texto visible es la descripción
+      selectPreset.appendChild(option);
+    });
+
     ejecutarTodo();
   })
   .catch(error => {
     console.error('Error al cargar JSON:', error);
     document.getElementById('resultado-diagnostico').textContent = 'Error al cargar diagnosticos.json';
   });
+
+// Evento al elegir un caso del selector predefinido
+selectPreset.addEventListener('change', (e) => {
+  const indexElegido = e.target.value;
+
+  if (indexElegido !== "") {
+    const caso = listaDiagnosticos[indexElegido];
+
+    // Seteamos los combos con los valores exactos del caso
+    selectMotor.value = caso.motor;
+    selectVerde.value = caso.verde;
+    selectRojo.value = caso.rojo;
+    selectAzul.value = caso.azul;
+
+    // Forzamos la actualización visual y el diagnóstico
+    ejecutarTodo();
+  }
+});
 
 // Función genérica para avanzar al siguiente valor en un desplegable (<select>)
 function alternarSiguienteEstado(selectElement) {

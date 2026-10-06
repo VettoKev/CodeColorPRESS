@@ -149,22 +149,22 @@
   {
     "motor": "Apagado",
     "verde": "Parpadeo",
-    "rojo": "Parpadeo",
+    "rojo": "Parpadeo rápido",
     "azul": "Apagado",
-    "diagnostico": "Falla: Modo Press"
+    "diagnostico": "Falla: Sensor de caudal"
   },
   {
     "motor": "Encendido",
     "verde": "Encendido",
-    "rojo": "Parpadeo",
+    "rojo": "Parpadeo rápido",
     "azul": "Encendido",
-    "diagnostico": "Falla: Modo Press (Sensor: Detecta caudal)"
+    "diagnostico": "Falla: Sensor de caudal (Sensor: Detecta caudal)"
   },
   {
     "motor": "Encendido",
     "verde": "Encendido",
-    "rojo": "Parpadeo",
+    "rojo": "Parpadeo rápido",
     "azul": "Apagado",
-    "diagnostico": "Falla: Modo Press (Sensor: No detecta caudal)"
+    "diagnostico": "Falla: Sensor de caudal (Sensor: No detecta caudal)"
   }
 ]
